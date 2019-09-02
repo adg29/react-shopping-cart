@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Thumb from './../../Thumb';
-import { formatPrice, productImageByRank, IMAGE_DIMENSION_KEYS } from '../../../services/util';
+import { formatPrice, productImage, IMAGE_DIMENSIONS } from '../../../services/util';
 
 class CartProduct extends Component {
   static propTypes = {
@@ -41,13 +41,17 @@ class CartProduct extends Component {
         />
         <Thumb
           classes="shelf-item__thumb"
-          src={productImageByRank(product, 2, IMAGE_DIMENSION_KEYS[2])}
+          src={productImage({
+            product: product,
+            rank: 2,
+            dimension: IMAGE_DIMENSIONS.SMALL
+          })}
           alt={product.title}
         />
         <div className="shelf-item__details">
           <p className="title">{product.title}</p>
           <p className="desc">
-            {`${product.availableSizes[0]} | ${product.style}`} <br />
+            {`${product.style}`} <br />
             Quantity: {product.quantity}
           </p>
         </div>
