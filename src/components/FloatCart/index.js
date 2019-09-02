@@ -155,7 +155,7 @@ class FloatCart extends Component {
                 )}`}
               </p>
               <small className="sub-price__installment">
-                {!!cartTotal.installments && (
+                {false && !!cartTotal.installments && (
                   <span>
                     {`OR UP TO ${cartTotal.installments} x ${
                       cartTotal.currencyFormat
