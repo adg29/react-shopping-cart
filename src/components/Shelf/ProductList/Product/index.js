@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Thumb from '../../../Thumb';
-import { formatPrice } from '../../../../services/util';
+import { formatPrice, productImageByRank } from '../../../../services/util';
 import { addProduct } from '../../../../services/cart/actions';
 
 const Product = ({ product, addProduct }) => {
@@ -38,7 +38,7 @@ const Product = ({ product, addProduct }) => {
       )}
       <Thumb
         classes="shelf-item__thumb"
-        src={require(`../../../../static/products/${product.sku}_1.jpg`)}
+        src={productImageByRank(product, 2)}
         alt={product.title}
       />
       <p className="shelf-item__title">{product.title}</p>
