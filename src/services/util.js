@@ -7,12 +7,12 @@ export const formatPrice = (x, currency) => {
   }
 };
 
-export const IMAGE_DIMENSION_KEYS = {
-    1: 'url_570xN',
-    2: 'url_170x135'
+export const IMAGE_DIMENSIONS = {
+    LARGE: 'url_570xN',
+    SMALL: 'url_170x135'
 }
 
-export const productImageByRank = (product, targetRank = 0, dimension = IMAGE_DIMENSION_KEYS[1]) => {
+export const productImage = ({product, rank: targetRank = 0, dimension = IMAGE_DIMENSIONS[1]}) => {
     let targetImage = product.images.find(i => i.rank === targetRank) || product.images[0]
     return targetImage[dimension]
 }
