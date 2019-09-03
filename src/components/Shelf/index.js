@@ -15,7 +15,8 @@ class Shelf extends Component {
     fetchProducts: PropTypes.func.isRequired,
     products: PropTypes.array.isRequired,
     filters: PropTypes.array,
-    sort: PropTypes.string
+    sort: PropTypes.string,
+    multiselect: PropTypes.array
   };
 
   state = {
@@ -27,7 +28,7 @@ class Shelf extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { filters: nextFilters, sort: nextSort } = nextProps;
+    const { multiselect: nextMultiSelect, filters: nextFilters, sort: nextSort } = nextProps;
 
     if (nextFilters !== this.props.filters) {
       this.handleFetchProducts(nextFilters, undefined);
@@ -35,6 +36,12 @@ class Shelf extends Component {
 
     if (nextSort !== this.props.sort) {
       this.handleFetchProducts(undefined, nextSort);
+    }
+
+    console.log('derived state multiselect')
+    if (nextMultiSelect !== this.props.multiselect) {
+      console.log('nextMultiSelect')
+      console.log(nextMultiSelect)
     }
   }
 
@@ -64,11 +71,14 @@ class Shelf extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  products: state.shelf.products,
-  filters: state.filters.items,
-  sort: state.sort.type
-});
+const mapStateToProps = state => {
+  return {
+    products: state.shelf.products,
+    filters: state.filters.items,
+    sort: state.sort.type,
+    multiselect: state.multiselect.tags
+  }
+}
 
 export default connect(
   mapStateToProps,
