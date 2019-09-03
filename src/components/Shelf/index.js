@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchProducts } from '../../services/shelf/actions';
+import { multiSelectProducts, fetchProducts } from '../../services/shelf/actions';
 
 import Spinner from '../Spinner';
 import ShelfHeader from './ShelfHeader';
@@ -12,6 +12,7 @@ import './style.scss';
 
 class Shelf extends Component {
   static propTypes = {
+    multiSelectProducts: PropTypes.func.isRequired,
     fetchProducts: PropTypes.func.isRequired,
     products: PropTypes.array.isRequired,
     filters: PropTypes.array,
@@ -42,7 +43,18 @@ class Shelf extends Component {
     if (nextMultiSelect !== this.props.multiselect) {
       console.log('nextMultiSelect')
       console.log(nextMultiSelect)
+      this.handleMultiSelectProducts(nextMultiSelect, [...this.props.products])
     }
+  }
+
+  handleMultiSelectProducts = (
+    multiselect = this.props.multiselect,
+    products = [...this.props.products]
+  ) => {
+    this.setState({ isLoading: true })
+    this.props.multiSelectProducts(multiselect, [...products], () => {
+      this.setState({ isLoading: false })
+    })
   }
 
   handleFetchProducts = (
@@ -63,7 +75,7 @@ class Shelf extends Component {
       <React.Fragment>
         {isLoading && <Spinner />}
         <div className="shelf-container">
-          <ShelfHeader productsLength={products.length} />
+          <ShelfHeader products={products} productsLength={products.length} />
           <ProductList products={products} />
         </div>
       </React.Fragment>
@@ -82,5 +94,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchProducts }
+  { fetchProducts, multiSelectProducts }
 )(Shelf);

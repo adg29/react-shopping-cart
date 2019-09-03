@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from './actionTypes';
+import { FILTER_PRODUCTS, FETCH_PRODUCTS } from './actionTypes';
 import axios from 'axios';
 
 import { productsAPI } from '../util';
@@ -15,6 +15,22 @@ const compare = {
     return 0;
   }
 };
+
+export const multiSelectProducts = (multiselect, products, callback) => dispatch => {
+  let products = [...products].filter(p => 
+      multiselect.find(filtertag => p.tags.find(tag => tag === filtertag))
+  )
+  console.log('shelf multiselectproducts action')
+
+  if (!!callback) {
+    callback();
+  }
+
+  return dispatch({
+    type: FILTER_PRODUCTS,
+    payload: products
+  })
+}
 
 export const fetchProducts = (filters, sortBy, callback) => dispatch => {
   return axios
