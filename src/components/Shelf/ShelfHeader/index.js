@@ -10,15 +10,14 @@ const ShelfHeader = props => {
       <small className="products-found">
         <span>{props.productsLength} Product(s) found.</span>
       </small>
-      <MultiSelect products={products} />
+      <MultiSelect />
       <Sort />
     </div>
   );
 };
 
 ShelfHeader.propTypes = {
-  productsLength: PropTypes.number.isRequired,
-  products: PropTypes.array.isRequired
+  productsLength: PropTypes.number.isRequired
 };
 
 export default ShelfHeader;

@@ -7,9 +7,8 @@ import { updateMultiSelect } from '../../../services/multiselect/actions'
 import Select from 'react-select';
 import tagOptions from './data/sprayartnyc-tags.json'
 
-const MultiSelect = ({ updateMultiSelect, multiselect }) => {
+const MultiSelect = ({ updateMultiSelect }) => {
   const handleChange = (selectedOption) => {
-    console.log(selectedOption)
     updateMultiSelect(selectedOption)
   }
   return (
@@ -27,8 +26,7 @@ const MultiSelect = ({ updateMultiSelect, multiselect }) => {
 }
 
 MultiSelect.propTypes = {
-  updateMultiSelect: PropTypes.func.isRequired,
-  multiselect: PropTypes.array.isRequired
+  updateMultiSelect: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
