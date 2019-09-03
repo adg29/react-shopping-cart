@@ -43,18 +43,7 @@ class Shelf extends Component {
     if (nextMultiSelect !== this.props.multiselect) {
       console.log('nextMultiSelect')
       console.log(nextMultiSelect)
-      this.handleMultiSelectProducts(nextMultiSelect, [...this.props.products])
     }
-  }
-
-  handleMultiSelectProducts = (
-    multiselect = this.props.multiselect,
-    products = [...this.props.products]
-  ) => {
-    this.setState({ isLoading: true })
-    this.props.multiSelectProducts(multiselect, [...products], () => {
-      this.setState({ isLoading: false })
-    })
   }
 
   handleFetchProducts = (
@@ -83,9 +72,22 @@ class Shelf extends Component {
   }
 }
 
+const getMultiSelectProducts = (products, multiselect) => {
+  if (multiselect && multiselect.length > 0) {
+    let multiselectTags = multiselect.map(t => t.value)
+    let filtered = [...products].filter(p => {
+      return p.tags.find(tag => multiselectTags.includes(tag))
+    })
+
+    return filtered
+  } else {
+    return products
+  }
+}
+
 const mapStateToProps = state => {
   return {
-    products: state.shelf.products,
+    products: getMultiSelectProducts(state.shelf.products, state.multiselect.tags),
     filters: state.filters.items,
     sort: state.sort.type,
     multiselect: state.multiselect.tags
