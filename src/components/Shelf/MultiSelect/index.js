@@ -10,6 +10,7 @@ import tagOptions from './data/sprayartnyc-tags.json'
 const MultiSelect = ({ updateSelect, select }) => {
   const handleChange = (selectedOption) => {
     console.log(selectedOption)
+    updateSelect(selectedOption)
   }
   return (
     <div>
