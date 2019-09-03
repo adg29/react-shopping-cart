@@ -16,22 +16,6 @@ const compare = {
   }
 };
 
-export const multiSelectProducts = (multiselect, products, callback) => dispatch => {
-  let products = [...products].filter(p => 
-      multiselect.find(filtertag => p.tags.find(tag => tag === filtertag))
-  )
-  console.log('shelf multiselectproducts action')
-
-  if (!!callback) {
-    callback();
-  }
-
-  return dispatch({
-    type: FILTER_PRODUCTS,
-    payload: products
-  })
-}
-
 export const fetchProducts = (filters, sortBy, callback) => dispatch => {
   return axios
     .get(productsAPI)

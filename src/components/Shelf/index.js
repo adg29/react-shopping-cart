@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { multiSelectProducts, fetchProducts } from '../../services/shelf/actions';
+import { fetchProducts } from '../../services/shelf/actions';
 
 import Spinner from '../Spinner';
 import ShelfHeader from './ShelfHeader';
@@ -12,7 +12,6 @@ import './style.scss';
 
 class Shelf extends Component {
   static propTypes = {
-    multiSelectProducts: PropTypes.func.isRequired,
     fetchProducts: PropTypes.func.isRequired,
     products: PropTypes.array.isRequired,
     filters: PropTypes.array,
@@ -29,7 +28,7 @@ class Shelf extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { multiselect: nextMultiSelect, filters: nextFilters, sort: nextSort } = nextProps;
+    const { filters: nextFilters, sort: nextSort } = nextProps;
 
     if (nextFilters !== this.props.filters) {
       this.handleFetchProducts(nextFilters, undefined);
@@ -37,12 +36,6 @@ class Shelf extends Component {
 
     if (nextSort !== this.props.sort) {
       this.handleFetchProducts(undefined, nextSort);
-    }
-
-    console.log('derived state multiselect')
-    if (nextMultiSelect !== this.props.multiselect) {
-      console.log('nextMultiSelect')
-      console.log(nextMultiSelect)
     }
   }
 
@@ -96,5 +89,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchProducts, multiSelectProducts }
+  { fetchProducts }
 )(Shelf);
