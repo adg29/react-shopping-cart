@@ -15,7 +15,8 @@ class Shelf extends Component {
     fetchProducts: PropTypes.func.isRequired,
     products: PropTypes.array.isRequired,
     filters: PropTypes.array,
-    sort: PropTypes.string
+    sort: PropTypes.string,
+    multiselect: PropTypes.array
   };
 
   state = {
@@ -64,11 +65,27 @@ class Shelf extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  products: state.shelf.products,
-  filters: state.filters.items,
-  sort: state.sort.type
-});
+const getMultiSelectProducts = (products, multiselect) => {
+  if (multiselect && multiselect.length > 0) {
+    let multiselectTags = multiselect.map(t => t.value)
+    let filtered = [...products].filter(p => {
+      return p.tags.find(tag => multiselectTags.includes(tag))
+    })
+
+    return filtered
+  } else {
+    return products
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    products: getMultiSelectProducts(state.shelf.products, state.multiselect.tags),
+    filters: state.filters.items,
+    sort: state.sort.type,
+    multiselect: state.multiselect.tags
+  }
+}
 
 export default connect(
   mapStateToProps,
