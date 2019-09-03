@@ -1,6 +1,6 @@
 import { UPDATE_SELECT } from './actionTypes'
 
-export const updateSelect = select => ({
+export const updateMultiSelect = multiselect => ({
   type: UPDATE_SELECT,
-  payload: select
+  payload: multiselect
 })
