@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Select from '../Select'
+import MultiSelect from '../MultiSelect'
 import Sort from '../Sort';
 
 const ShelfHeader = props => {
@@ -10,7 +10,7 @@ const ShelfHeader = props => {
       <small className="products-found">
         <span>{props.productsLength} Product(s) found.</span>
       </small>
-      <Select />
+      <MultiSelect />
       <Sort />
     </div>
   );
