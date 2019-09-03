@@ -1,7 +1,7 @@
 import { UPDATE_SELECT } from './actionTypes'
 
 const initialState = {
-    type: []
+    tags: []
 }
 
 export default function(state = initialState, action) {
@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
         case UPDATE_SELECT:
             return {
                 ...state,
-                type: action.payload
+                tags: action.payload
             }
         default:
             return state
