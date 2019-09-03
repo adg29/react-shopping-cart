@@ -1,3 +1,7 @@
+const Entities = require('html-entities').AllHtmlEntities;
+
+export const entities = new Entities();
+
 export const formatPrice = (x, currency) => {
   switch (currency) {
     case 'BRL':
@@ -6,6 +10,7 @@ export const formatPrice = (x, currency) => {
       return x.toFixed(2);
   }
 };
+
 
 export const IMAGE_DIMENSIONS = {
     LARGE: 'url_570xN',
