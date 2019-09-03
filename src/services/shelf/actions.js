@@ -1,4 +1,4 @@
-import { FILTER_PRODUCTS, FETCH_PRODUCTS } from './actionTypes';
+import { FETCH_PRODUCTS } from './actionTypes';
 import axios from 'axios';
 
 import { productsAPI } from '../util';

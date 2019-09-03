@@ -1,4 +1,4 @@
-import { UPDATE_SELECT } from './actionTypes'
+import { UPDATE_MULTISELECT } from './actionTypes'
 
 const initialState = {
     tags: []
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case UPDATE_SELECT:
+        case UPDATE_MULTISELECT:
             return {
                 ...state,
                 tags: action.payload
