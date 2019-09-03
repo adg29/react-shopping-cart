@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateFilters } from '../../../services/filters/actions';
 import Checkbox from '../../Checkbox';
-import GithubStarButton from '../../github/StarButton';
 
 import './style.scss';
 
@@ -41,13 +40,22 @@ class Filter extends Component {
 
   createCheckboxes = () => availableSizes.map(this.createCheckbox);
 
+  renderFilters = false
+
   render() {
-    return (
-      <div className="filters">
-        <h4 className="title">Sizes:</h4>
-        {this.createCheckboxes()}
-      </div>
-    );
+    if (!this.renderFilters) {
+      return (
+        <div className="filters">
+        </div>
+      )
+    } else {
+      return (
+        <div className="filters">
+          <h4 className="title">Sizes:</h4>
+          {this.createCheckboxes()}
+        </div>
+      );
+    }
   }
 }
 

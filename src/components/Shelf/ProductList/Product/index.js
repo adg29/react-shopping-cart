@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Thumb from '../../../Thumb';
-import { formatPrice, productImage, IMAGE_DIMENSIONS } from '../../../../services/util';
+import { formatPrice, productImage, IMAGE_DIMENSIONS, entities } from '../../../../services/util';
 import { addProduct } from '../../../../services/cart/actions';
 
 const Product = ({ product, addProduct }) => {
@@ -32,10 +32,8 @@ const Product = ({ product, addProduct }) => {
       className="shelf-item"
       onClick={() => addProduct(product)}
       data-sku={product.sku}
+      title={entities.decode(product.title)}
     >
-      {product.isFreeShipping && (
-        <div className="shelf-stopper">Free shipping</div>
-      )}
       <Thumb
         classes="shelf-item__thumb"
         src={productImage({
@@ -43,9 +41,13 @@ const Product = ({ product, addProduct }) => {
           rank: 2,
           dimension: IMAGE_DIMENSIONS.SMALL
         })}
-        alt={product.title}
+        alt={entities.decode(product.title)}
       />
-      <p className="shelf-item__title">{product.title}</p>
+      <p 
+        className="shelf-item__title"
+      >
+        {entities.decode(product.title)}
+      </p>
       <div className="shelf-item__price">
         <div className="val">
           <small>{product.currencyFormat}</small>

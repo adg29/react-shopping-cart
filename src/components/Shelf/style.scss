@@ -70,9 +70,13 @@
     }
 
     &__title {
+      text-align: left;
       position: relative;
-      padding: 0 20px;
-      height: 45px;
+      padding: 0;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
 
       &::before {
         content: '';
