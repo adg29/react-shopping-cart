@@ -12,7 +12,7 @@ const MultiSelect = ({ updateMultiSelect }) => {
     updateMultiSelect(selectedOption)
   }
   return (
-    <div>
+    <>
       <Select
         onChange={handleChange}
         isMulti
@@ -21,7 +21,7 @@ const MultiSelect = ({ updateMultiSelect }) => {
         className="basic-multi-select"
         classNamePrefix="select"
       />
-    </div>
+    </>
   )
 }
 

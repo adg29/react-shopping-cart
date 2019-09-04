@@ -10,8 +10,10 @@ const ShelfHeader = props => {
       <small className="products-found">
         <span>{props.productsLength} Product(s) found.</span>
       </small>
+      <div className="shelf-container-filters">
+        <Sort />
+      </div>
       <MultiSelect />
-      <Sort />
     </div>
   );
 };

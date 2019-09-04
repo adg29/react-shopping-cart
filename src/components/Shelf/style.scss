@@ -4,6 +4,17 @@
   width: 85%;
   min-height: 600px;
 
+  .basic-multi-select {
+    clear: both;
+  }
+
+  &-filters{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    float: right;
+  }
+
   &-header {
     width: 100%;
     margin-bottom: 10px;
